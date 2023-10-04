@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.ticketnow.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.ticketnow.ui.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/nav_wallet"
+        android:name="com.example.ticketnow.ui.wallet.WalletFragment"
+        android:label="@string/wallet"
+        tools:layout="@layout/fragment_wallet" />
+
+    <fragment
+        android:id="@+id/nav_timetable"
+        android:name="com.example.ticketnow.ui.timetable.TimeTableFragment"
+        android:label="@string/timetable"
+        tools:layout="@layout/fragment_time_table" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.example.ticketnow.ui.LogoutFragment"
+        android:label="@string/log_out"
+        tools:layout="@layout/fragment_logout" />
+</navigation>

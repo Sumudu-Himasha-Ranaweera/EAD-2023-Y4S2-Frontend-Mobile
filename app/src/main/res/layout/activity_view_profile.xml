@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Navbar.ViewProfileActivity"
+    android:background="#343434">
+
+        <ImageView
+            android:id="@+id/btn_close"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_close"
+            android:tint="@color/white"
+            android:background="@drawable/close_button"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"/>
+
+        <!--    Linear Layout for Name -->
+
+        <LinearLayout
+            android:id="@+id/linearLayoutName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentLeft="true"
+            android:orientation="horizontal">
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fontFamily="@font/calibril"
+                android:gravity="start"
+                android:padding="5dp"
+                android:text="Name :"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:textStyle="bold"
+                android:translationZ="90dp" />
+
+            <TextView
+                android:id="@+id/TxtName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/calibril"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:padding="10dp"
+                android:textColor="@color/purple_500"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:translationZ="90dp" />
+
+        </LinearLayout>
+
+    <!--    Linear Layout for Email -->
+
+    <LinearLayout
+        android:id="@+id/linearLayoutEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Email  :"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:translationZ="90dp"/>
+
+        <TextView
+            android:id="@+id/TxtEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="@color/purple_500"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationZ="90dp" />
+
+    </LinearLayout>
+
+    <!--    Linear Layout for ID -->
+
+    <LinearLayout
+        android:id="@+id/linearLayoutID"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="ID No  :"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:translationZ="90dp"/>
+
+        <TextView
+            android:id="@+id/TxtID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="@color/purple_500"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationZ="90dp" />
+
+    </LinearLayout>
+
+    <!--    Linear Layout for Phone Number -->
+
+    <LinearLayout
+        android:id="@+id/linearLayoutPhone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Phone Number :"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:translationZ="90dp"/>
+
+        <TextView
+            android:id="@+id/TxtPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="@color/purple_500"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationZ="90dp" />
+
+    </LinearLayout>
+
+    <!--    Linear Layout for Address -->
+
+    <LinearLayout
+        android:id="@+id/linearLayoutAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:orientation="horizontal">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="start"
+            android:padding="5dp"
+            android:text="Address  :"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:translationZ="90dp"/>
+
+        <TextView
+            android:id="@+id/TxtAddress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/calibril"
+            android:gravity="center"
+            android:layout_marginLeft="20dp"
+            android:padding="10dp"
+            android:textColor="@color/purple_500"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:translationZ="90dp" />
+
+    </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:orientation="vertical">-->
+
+<!--    <ImageView-->
+<!--        android:id="@+id/btn_close"-->
+<!--        android:layout_width="50dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:src="@drawable/ic_close"-->
+<!--        android:tint="@color/white"-->
+<!--        android:layout_marginLeft="310dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:background="@drawable/close_button"/>-->
+
+<!--    &lt;!&ndash;    Linear Layout for Name &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayoutName"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Name :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:background="@color/white"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/TxtName"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--&lt;!&ndash;    Linear Layout for Email &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayoutEmail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Email :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:background="@color/white"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/TxtEmail"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash;    Linear Layout for NIC/Passport Number &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayoutID"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="ID No :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:background="@color/white"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/TxtID"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    &lt;!&ndash;    Linear Layout for Phone Number &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayoutPhone"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Phone No :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:background="@color/white"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/TxtPhone"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp" />-->
+
+<!--    </LinearLayout>-->
+
+
+<!--    &lt;!&ndash;    Linear Layout for Address &ndash;&gt;-->
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/linearLayoutAddress"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:orientation="horizontal">-->
+
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="start"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Address :"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:background="@color/white"-->
+<!--            android:textSize="30dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/TxtAddress"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:fontFamily="@font/calibril"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginLeft="20dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:textColor="@color/purple_500"-->
+<!--            android:textSize="28dp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:translationZ="90dp" />-->
+
+<!--    </LinearLayout>-->
+
+<!--    </LinearLayout>-->
+
+</RelativeLayout>
