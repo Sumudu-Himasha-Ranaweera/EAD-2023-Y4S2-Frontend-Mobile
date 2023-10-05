@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ticketnow.UserLogin.WelcomeActivity;
+import com.example.ticketnow.Walkthrough.SliderOneActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashActivity.this, WelcomeActivity.class);
+                Intent intent = new Intent(SplashActivity.this, SliderOneActivity.class);
                 startActivity(intent);
                 finish();
             }

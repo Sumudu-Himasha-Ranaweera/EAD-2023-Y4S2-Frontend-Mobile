@@ -27,21 +27,21 @@ import org.jetbrains.annotations.NotNull;
 
 public class LoginActivity extends AppCompatActivity {
 
-//    private View decorView;
-//
-//    ImageButton btnGo;
-//    EditText IDnum, password;
-//    TextView TextSignUp;
-//
+    private View decorView;
+
+    ImageButton btnGo;
+    EditText IDnum, password;
+    TextView TextSignUp;
+
 //    //Firebase Connection
 //    FirebaseAuth auth;
 //    //realtime Database Connection
 //    FirebaseDatabase database;
 //    //realtime database reference
 //    DatabaseReference reference;
-//
-//    //progress bar
-//    ProgressBar progressBar;
+
+    //progress bar
+    ProgressBar progressBar;
 
     public LoginActivity(Context mMockContext) {
     }
@@ -51,77 +51,73 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-    }}
-
 //        //firebase connection
 //        auth = FirebaseAuth.getInstance();
 //        //realtime Database Connection
 //        database = FirebaseDatabase.getInstance();
 //        reference = database.getReference("Registered Users");
 //
-//        //progress bar
-//        progressBar = (ProgressBar) findViewById(R.id.progressbar);
-//        progressBar.setVisibility(View.GONE);
+        //progress bar
+        progressBar = (ProgressBar) findViewById(R.id.progressbar);
+        progressBar.setVisibility(View.GONE);
 //
-//        IDnum = (EditText) findViewById(R.id.EditTxtID);
-//        password = (EditText) findViewById(R.id.EditTxtPassword);
-//
-//        btnGo = (ImageButton) findViewById(R.id.btn_login);
-//        TextSignUp = (TextView) findViewById(R.id.txtSignUp);
-//
-//        //After click "Sign Up" textView it will redirect to Sign Up Page
-//        TextSignUp.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
-//                startActivity(i);
-//            }
-//        });//End code
-//
-//        //button click login to app
-//        btnGo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
+        IDnum = (EditText) findViewById(R.id.EditTxtID);
+        password = (EditText) findViewById(R.id.EditTxtPassword);
+
+        btnGo = (ImageButton) findViewById(R.id.btn_login);
+        TextSignUp = (TextView) findViewById(R.id.txtSignUp);
+
+        //After click "Sign Up" textView it will redirect to Sign Up Page
+        TextSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(i);
+            }
+        });//End code
+
+        //button click login to app
+        btnGo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //                LoginUser();
-//                progressBar.setVisibility(View.VISIBLE);
-//
-//            }
-//        }); //End Code
-//
-//        //remove bottom status bar
-//        decorView = getWindow().getDecorView();
-//        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-//            @Override
-//            public void onSystemUiVisibilityChange(int visibility) {
-//                if (visibility == 0)
-//                    decorView.setSystemUiVisibility(hideSystemBars());
-//            }
-//        });//end code
-//
-//    }
-//
-//    //remove bottom status bar
-//    @Override
-//    public void onWindowFocusChanged(boolean hasFocus) {
-//        super.onWindowFocusChanged(hasFocus);
-//        if (hasFocus)
-//        {
-//            decorView.setSystemUiVisibility(hideSystemBars());
-//        }
-//    }
-//
-//    private int hideSystemBars()
-//    {
-//        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-//                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-//                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-//                | View.SYSTEM_UI_FLAG_FULLSCREEN
-//                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-//    }
-//    //End of remove bottom status bar
-//
-//
+                progressBar.setVisibility(View.VISIBLE);
+
+            }
+        }); //End Code
+
+        //remove bottom status bar
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+            @Override
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0)
+                    decorView.setSystemUiVisibility(hideSystemBars());
+            }
+        });//end code
+
+    }
+
+    //remove bottom status bar
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+    }
+    //End of remove bottom status bar
+}
+
 //    private void LoginUser() {
 //
 //        //creating variables

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/slider_2"
+    tools:context=".Walkthrough.SliderTwoActivity">
+
+    <ImageView
+        android:id="@+id/Logo"
+        android:layout_width="179dp"
+        android:layout_height="209dp"
+        android:layout_marginTop="40dp"
+        android:elevation="15dp"
+        android:src="@drawable/ead_round_logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/desc1"
+        android:layout_width="410dp"
+        android:layout_height="71dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/calibril"
+        android:text="TICKETNOW group runs on crowdsource verified information. You also can join with us and share information and get live updates."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Logo" />
+
+    <TextView
+        android:id="@+id/desc2"
+        android:layout_width="383dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/calibril"
+        android:text="දුම්රිය මගීන්ගේ නිල සමූහය විසින් සිදු කෙරෙන මෙම සේවාව මහජන තොරතුරු බෙදා හදා ගැනීම මත ක්‍රියාත්මක වන සමූහයක් බැවින්, ඔබට ද මෙම සමූහයේ සාමාජිකත්වය ලබාගෙන තොරතුරු බෙදා ගැනීමට දායක වීමටත්, අවශ්‍ය තොරතුරු යාවත්කාලීන කර ගැනීමටත් හැකියාව ඇත. "
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/desc1"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/roundedbutton"
+        android:drawablePadding="3dp"
+        android:drawableTint="@color/black"
+        android:elevation="10dp"
+        android:padding="12dp"
+        android:text="GET STARTED NOW"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

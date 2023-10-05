@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ticketnow.R;
+import com.example.ticketnow.Walkthrough.SliderOneActivity;
 
 public class WelcomeActivity extends AppCompatActivity {
 
@@ -27,9 +28,9 @@ public class WelcomeActivity extends AppCompatActivity {
         //login button connection
         login.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(WelcomeActivity.this, LoginActivity.class);
-                startActivity(i);
+            public void onClick(View view) {
+                Intent LoginPage = new Intent(WelcomeActivity.this, NewLoginActivity.class);
+                startActivity(LoginPage);
             }
         });
 
