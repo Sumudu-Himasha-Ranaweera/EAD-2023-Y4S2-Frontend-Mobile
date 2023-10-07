@@ -28,6 +28,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 
 import com.example.ticketnow.R;
@@ -36,6 +37,9 @@ import com.example.ticketnow.TestActivity;
 import io.github.muddz.styleabletoast.StyleableToast;
 
 public class NewLoginActivity extends AppCompatActivity {
+
+    //attribute for remove bottom status bar
+    private View decorView;
 
     ImageButton btnGo;
     EditText NIC, password;
@@ -52,12 +56,13 @@ public class NewLoginActivity extends AppCompatActivity {
         btnGo = (ImageButton) findViewById(R.id.btn_login);
         TextSignUp = (TextView) findViewById(R.id.txtSignUp);
 
-        // Set a click listener for the "Sign Up" textView to redirect to the registration page
-        TextSignUp.setOnClickListener(new View.OnClickListener() {
+        //Remove bottom status bar
+        decorView = getWindow().getDecorView();
+        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
             @Override
-            public void onClick(View v) {
-                Intent i = new Intent(NewLoginActivity.this, RegisterActivity.class);
-                startActivity(i);
+            public void onSystemUiVisibilityChange(int visibility) {
+                if (visibility == 0)
+                    decorView.setSystemUiVisibility(hideSystemBars());
             }
         });
 
@@ -71,6 +76,15 @@ public class NewLoginActivity extends AppCompatActivity {
 
                 // Call the method to perform sign-in
                 signIn(userInputNIC, userInputPassword);
+            }
+        });
+
+        // Set a click listener for the "Sign Up" textView to redirect to the registration page
+        TextSignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerPage = new Intent(NewLoginActivity.this, NewRegisterActivity.class);
+                startActivity(registerPage);
             }
         });
     }
@@ -114,6 +128,24 @@ public class NewLoginActivity extends AppCompatActivity {
 
         // Add the request to the Volley request queue
         Volley.newRequestQueue(this).add(request);
+    }
+
+    //remove bottom status bar
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            decorView.setSystemUiVisibility(hideSystemBars());
+        }
+    }
+
+    private int hideSystemBars() {
+        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
     }
 
 }

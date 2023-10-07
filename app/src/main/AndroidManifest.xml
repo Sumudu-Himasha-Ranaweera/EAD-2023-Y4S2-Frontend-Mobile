@@ -11,17 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicketNow">
-        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".UserProfile.ProfileActivity"></activity>
+        <activity android:name=".UserLogin.NewRegisterActivity" />
+        <activity android:name=".TestActivity" />
         <activity android:name=".Walkthrough.SliderTwoActivity" />
         <activity android:name=".Walkthrough.SliderOneActivity" />
         <activity android:name=".UserLogin.NewLoginActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".UserLogin.WelcomeActivity" />
-        <activity android:name=".UserLogin.RegisterActivity" />
-<!--        <activity android:name=".UserLogin.LoginActivity" />-->
+        <activity android:name=".UserLogin.RegisterActivity" /> <!-- <activity android:name=".UserLogin.LoginActivity" /> -->
         <activity android:name=".UserLogin.OTPActivity" />
-
-
         <activity
             android:name=".SplashActivity"
             android:exported="true"
