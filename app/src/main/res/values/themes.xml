@@ -31,4 +31,36 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
 
+    <style name="SuccessToast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">#000000</item>
+        <item name="stFont">@font/calibril</item>
+        <item name="stTextSize">22dp</item>
+        <item name="stColorBackground">#8BC34A</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">2dp</item>
+        <item name="stStrokeColor">#000000</item>
+        <item name="stIconStart">@drawable/check_circle</item>
+<!--        <item name="stIconEnd">@drawable/ic</item>-->
+        <item name="stLength">LONG</item> LONG or SHORT
+<!--        <item name="stGravity">top</item> top or center-->
+        <item name="stRadius">25dp</item>
+    </style>
+
+    <style name="InvalidToast">
+        <item name="stTextBold">true</item>
+        <item name="stTextColor">#FFFFFF</item>
+        <item name="stFont">@font/calibril</item>
+        <item name="stTextSize">22dp</item>
+        <item name="stColorBackground">#C83030</item>
+        <item name="stSolidBackground">true</item>
+        <item name="stStrokeWidth">2dp</item>
+        <item name="stStrokeColor">#FFFFFF</item>
+        <item name="stIconStart">@drawable/error</item>
+        <!--        <item name="stIconEnd">@drawable/ic</item>-->
+        <item name="stLength">LONG</item> LONG or SHORT
+        <!--        <item name="stGravity">top</item> top or center-->
+        <item name="stRadius">25dp</item>
+    </style>
+
 </resources>
