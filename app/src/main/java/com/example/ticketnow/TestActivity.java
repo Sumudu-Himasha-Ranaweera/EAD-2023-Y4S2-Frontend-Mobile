@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.example.ticketnow.UserLogin.NewLoginActivity;
 import com.example.ticketnow.UserLogin.RegisterActivity;
 import com.example.ticketnow.UserLogin.WelcomeActivity;
+import com.example.ticketnow.UserProfile.ProfileActivity;
 
 import java.io.IOException;
 
@@ -34,13 +35,27 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        Back = (Button) findViewById(R.id.btnBack);
+        // Retrieve extras from the intent
+        Intent intent = getIntent();
+        String token = intent.getStringExtra("token");
+        String userDetails = intent.getStringExtra("userDetails");
 
+        Back = (Button) findViewById(R.id.btnBack);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                StyleableToast.makeText(TestActivity.this, "Sign-in Failed !", R.style.InvalidToast).show();
+
+                StyleableToast.makeText(TestActivity.this, "Yayy, Let's go to Profile!", R.style.SuccessToast).show();
+
+                // Pass the data back to Profile Activity
+                Intent profile = new Intent(TestActivity.this, ProfileActivity.class);
+                profile.putExtra("token", token);
+                profile.putExtra("userDetails", userDetails);
+
+                // Start the HomeActivity with the intent
+                startActivity(profile);
+
             }
         });
 

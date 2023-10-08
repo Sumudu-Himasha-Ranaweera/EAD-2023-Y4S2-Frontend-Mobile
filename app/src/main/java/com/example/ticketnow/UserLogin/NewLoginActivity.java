@@ -10,15 +10,6 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-//import java.io.IOException;
-//import okhttp3.OkHttpClient;
-//import okhttp3.Request;
-//import okhttp3.Response;
-//import android.util.Log;
-//import okhttp3.Call;
-//import okhttp3.Callback;
-//import org.jetbrains.annotations.NotNull;
-
 import android.util.Log;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,13 +24,14 @@ import org.w3c.dom.Text;
 
 import com.example.ticketnow.R;
 import com.example.ticketnow.TestActivity;
+import com.example.ticketnow.UserProfile.ProfileActivity;
 
 import io.github.muddz.styleabletoast.StyleableToast;
 
 public class NewLoginActivity extends AppCompatActivity {
 
     //attribute for remove bottom status bar
-    private View decorView;
+//    private View decorView;
 
     ImageButton btnGo;
     EditText NIC, password;
@@ -56,15 +48,15 @@ public class NewLoginActivity extends AppCompatActivity {
         btnGo = (ImageButton) findViewById(R.id.btn_login);
         TextSignUp = (TextView) findViewById(R.id.txtSignUp);
 
-        //Remove bottom status bar
-        decorView = getWindow().getDecorView();
-        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
-            @Override
-            public void onSystemUiVisibilityChange(int visibility) {
-                if (visibility == 0)
-                    decorView.setSystemUiVisibility(hideSystemBars());
-            }
-        });
+//        //Remove bottom status bar
+//        decorView = getWindow().getDecorView();
+//        decorView.setOnSystemUiVisibilityChangeListener(new View.OnSystemUiVisibilityChangeListener() {
+//            @Override
+//            public void onSystemUiVisibilityChange(int visibility) {
+//                if (visibility == 0)
+//                    decorView.setSystemUiVisibility(hideSystemBars());
+//            }
+//        });
 
         // Set a click listener for the login button
         btnGo.setOnClickListener(new View.OnClickListener() {
@@ -110,8 +102,14 @@ public class NewLoginActivity extends AppCompatActivity {
                             // Display a toast message indicating successful sign-in
                             StyleableToast.makeText(NewLoginActivity.this, "Sign-in successful!", R.style.SuccessToast).show();
 
-                            Intent i = new Intent(NewLoginActivity.this, TestActivity.class);
-                            startActivity(i);
+                            // Create an intent to navigate to the ProfileActivity and pass response details as extras
+                            Intent home = new Intent(NewLoginActivity.this, TestActivity.class);
+                            home.putExtra("token", token);
+                            home.putExtra("userDetails", userDetails.toString());
+
+                            // Start the ProfileActivity with the intent
+                            startActivity(home);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -130,22 +128,22 @@ public class NewLoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-    //remove bottom status bar
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            decorView.setSystemUiVisibility(hideSystemBars());
-        }
-    }
-
-    private int hideSystemBars() {
-        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
-    }
+//    //remove bottom status bar
+//    @Override
+//    public void onWindowFocusChanged(boolean hasFocus) {
+//        super.onWindowFocusChanged(hasFocus);
+//        if (hasFocus) {
+//            decorView.setSystemUiVisibility(hideSystemBars());
+//        }
+//    }
+//
+//    private int hideSystemBars() {
+//        return View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+//                | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+//                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION;
+//    }
 
 }
