@@ -126,7 +126,7 @@ public class NewRegisterActivity extends AppCompatActivity {
                         // For simplicity, we'll just show a Toast
                         StyleableToast.makeText(NewRegisterActivity.this, "User registered successfully", R.style.SuccessToast).show();
 
-                        Intent SignUp =new Intent(NewRegisterActivity.this, TestActivity.class);
+                        Intent SignUp =new Intent(NewRegisterActivity.this, NewLoginActivity.class);
                         startActivity(SignUp);
                     }
                 }, new Response.ErrorListener() {
@@ -134,7 +134,7 @@ public class NewRegisterActivity extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 // Handle errors
                 Log.e("RegisterActivity", "Registration failed: " + error.toString());
-                StyleableToast.makeText(NewRegisterActivity.this, "Registration failed:>>>>>> " + error.getMessage(), R.style.InvalidToast).show();
+                StyleableToast.makeText(NewRegisterActivity.this, "Registration failed: " + error.getMessage(), R.style.InvalidToast).show();
             }
         });
 

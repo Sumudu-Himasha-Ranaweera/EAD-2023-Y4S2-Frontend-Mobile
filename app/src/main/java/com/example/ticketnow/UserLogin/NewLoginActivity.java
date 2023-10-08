@@ -83,10 +83,20 @@ public class NewLoginActivity extends AppCompatActivity {
 
     private void signIn(String nic, String password) {
         // Create the HTTP request URL with user input
-        String url = "https://restapi.azurewebsites.net/api/User/SignIn?nic=" + nic + "&password=" + password;
+        String url = "https://restapi.azurewebsites.net/api/User/SignIn";
+
+        // Create a JSONObject to hold the request body data
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("nic", nic);
+            requestBody.put("password", password);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
 
         // Create a JsonObjectRequest to make the HTTP POST request
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null,
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, requestBody,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

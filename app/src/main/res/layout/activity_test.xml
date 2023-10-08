@@ -24,14 +24,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/black"
-        android:text="Back"
+        android:text="Profile"
         android:textColor="@color/white"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.077" />
+        app:layout_constraintVertical_bias="0.098" />
+
+    <Button
+        android:id="@+id/btnReservation"
+        android:layout_width="220dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_button"
+        android:text="Reservation"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintVertical_bias="0.268" />
 
     <Button
         android:id="@+id/btnGet"
@@ -45,12 +59,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.216" />
+        app:layout_constraintVertical_bias="0.616" />
 
     <TextView
         android:id="@+id/response"
-        android:layout_width="438dp"
-        android:layout_height="522dp"
+        android:layout_width="432dp"
+        android:layout_height="222dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -33,13 +33,13 @@
 
     <style name="SuccessToast">
         <item name="stTextBold">true</item>
-        <item name="stTextColor">#000000</item>
+        <item name="stTextColor">@color/white</item>
         <item name="stFont">@font/calibril</item>
-        <item name="stTextSize">22dp</item>
-        <item name="stColorBackground">#8BC34A</item>
+        <item name="stTextSize">18dp</item>
+        <item name="stColorBackground">#008000</item>
         <item name="stSolidBackground">true</item>
-        <item name="stStrokeWidth">2dp</item>
-        <item name="stStrokeColor">#000000</item>
+        <item name="stStrokeWidth">3dp</item>
+        <item name="stStrokeColor">#7CFC00</item>
         <item name="stIconStart">@drawable/check_circle</item>
 <!--        <item name="stIconEnd">@drawable/ic</item>-->
         <item name="stLength">LONG</item> LONG or SHORT
@@ -51,11 +51,11 @@
         <item name="stTextBold">true</item>
         <item name="stTextColor">#FFFFFF</item>
         <item name="stFont">@font/calibril</item>
-        <item name="stTextSize">22dp</item>
-        <item name="stColorBackground">#C83030</item>
+        <item name="stTextSize">18dp</item>
+        <item name="stColorBackground">#880808</item>
         <item name="stSolidBackground">true</item>
         <item name="stStrokeWidth">2dp</item>
-        <item name="stStrokeColor">#FFFFFF</item>
+        <item name="stStrokeColor">#FF0000</item>
         <item name="stIconStart">@drawable/error</item>
         <!--        <item name="stIconEnd">@drawable/ic</item>-->
         <item name="stLength">LONG</item> LONG or SHORT

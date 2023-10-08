@@ -4,23 +4,21 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.ticketnow.R;
+import com.example.ticketnow.TestActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private TextView textViewFirstName;
-    private TextView textViewUserEmail;
-    private TextView textViewPW_Change;
-    private TextView textViewNIC;
-    private TextView viewFirstName;
-    private TextView viewLastName;
-    private TextView viewNumber;
-    private TextView viewEmail;
+    private TextView textViewFirstName, textViewUserEmail, textViewPW_Change, textViewNIC, viewFirstName, viewLastName, viewNumber, viewEmail;
+
+    private Button btnEditProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +39,26 @@ public class ProfileActivity extends AppCompatActivity {
         viewNumber = findViewById(R.id.ViewNumber);
         viewEmail = findViewById(R.id.ViewEmail);
 
+        // Initialize Buttons
+        btnEditProfile = findViewById(R.id.buttonEdit);
+
+        btnEditProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent EditProfile = new Intent(ProfileActivity.this, EditProfileActivity.class);
+
+                // Pass the data back to Edit Profile Activity
+                EditProfile.putExtra("token", token);
+                EditProfile.putExtra("userDetails", userDetails);
+
+                // Start the Edit Profile Activity with the intent
+                startActivity(EditProfile);
+            }
+        });
+
         try {
             JSONObject userDetailsJson = new JSONObject(userDetails);
+
             // Extract user details from the JSON
             String firstName = userDetailsJson.getString("firstName");
             String lastName = userDetailsJson.getString("lastName");
