@@ -24,6 +24,7 @@ import org.w3c.dom.Text;
 
 import com.example.ticketnow.R;
 import com.example.ticketnow.TestActivity;
+import com.example.ticketnow.HomeActivity;
 import com.example.ticketnow.UserProfile.ProfileActivity;
 
 import io.github.muddz.styleabletoast.StyleableToast;
@@ -113,7 +114,7 @@ public class NewLoginActivity extends AppCompatActivity {
                             StyleableToast.makeText(NewLoginActivity.this, "Sign-in successful!", R.style.SuccessToast).show();
 
                             // Create an intent to navigate to the ProfileActivity and pass response details as extras
-                            Intent home = new Intent(NewLoginActivity.this, TestActivity.class);
+                            Intent home = new Intent(NewLoginActivity.this, HomeActivity.class);
                             home.putExtra("token", token);
                             home.putExtra("userDetails", userDetails.toString());
 

@@ -27,7 +27,7 @@ import okhttp3.Response;
 
 public class TestActivity extends AppCompatActivity {
 
-    Button Back;
+    Button Back, Reservation;
     TextView textViewArea;
 
     @Override
@@ -41,6 +41,7 @@ public class TestActivity extends AppCompatActivity {
         String userDetails = intent.getStringExtra("userDetails");
 
         Back = (Button) findViewById(R.id.btnBack);
+        Reservation = (Button) findViewById(R.id.btnReservation);
 
         Back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +56,18 @@ public class TestActivity extends AppCompatActivity {
 
                 // Start the HomeActivity with the intent
                 startActivity(profile);
+
+            }
+        });
+
+        Reservation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                StyleableToast.makeText(TestActivity.this, "Yayy, Let's go to Profile!", R.style.SuccessToast).show();
+
+                Intent home = new Intent(TestActivity.this, HomeActivity.class);
+                startActivity(home);
 
             }
         });
