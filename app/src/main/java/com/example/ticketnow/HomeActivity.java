@@ -6,8 +6,11 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.ticketnow.UserProfile.ProfileActivity;
+import com.example.ticketnow.Schedule.TrainScheduleActivity;
+import com.example.ticketnow.Reservation.TicketReserveActivity;
 
 import io.github.muddz.styleabletoast.StyleableToast;
 
@@ -34,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                StyleableToast.makeText(HomeActivity.this, "Yayy, Let's go to Profile!", R.style.SuccessToast).show();
+                StyleableToast.makeText(HomeActivity.this, "Yayy, Let's go to Profile!", Toast.LENGTH_SHORT, R.style.SuccessToast).show();
 
                 // Pass the data back to Profile Activity
                 Intent profile = new Intent(HomeActivity.this, ProfileActivity.class);
@@ -47,6 +50,26 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        TrainSchedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                StyleableToast.makeText(HomeActivity.this, "Let's go to Train Schedule!", Toast.LENGTH_SHORT, R.style.SuccessToast).show();
+
+                Intent schedule = new Intent(HomeActivity.this, TrainScheduleActivity.class);
+                startActivity(schedule);
+            }
+        });
+
+        TicketReserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                StyleableToast.makeText(HomeActivity.this, "Let's go to Ticket Reservation!", Toast.LENGTH_SHORT, R.style.SuccessToast).show();
+
+                Intent reserve = new Intent(HomeActivity.this, TicketReserveActivity.class);
+                startActivity(reserve);
+            }
+        });
 
     }
 }

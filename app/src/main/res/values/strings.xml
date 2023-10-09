@@ -20,4 +20,22 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <string-array name="start_station">
+        <item>Default</item>
+        <item>Maradana මරදාන</item>
+        <item>Ambepussa අඹේපුස්ස</item>
+        <item>Kelaniya කැළණිය</item>
+        <item>Dematagoda දෙමටගොඩ</item>
+        <item>Ragama රාගම</item>
+    </string-array>
+
+    <string-array name="end_station">
+        <item>Default</item>
+        <item>Maradana මරදාන</item>
+        <item>Ambepussa අඹේපුස්ස</item>
+        <item>Kelaniya කැළණිය</item>
+        <item>Dematagoda දෙමටගොඩ</item>
+        <item>Ragama රාගම</item>
+    </string-array>
+
 </resources>

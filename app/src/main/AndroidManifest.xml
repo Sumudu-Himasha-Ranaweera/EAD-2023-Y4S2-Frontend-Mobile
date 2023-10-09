@@ -11,7 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TicketNow">
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".Schedule.AllScheduleActivity"></activity>
+        <activity android:name=".Reservation.TicketReserveActivity" />
+        <activity android:name=".Schedule.TrainScheduleActivity" />
+        <activity android:name=".HomeActivity" />
         <activity android:name=".UserProfile.EditProfileActivity" />
         <activity android:name=".UserProfile.ProfileActivity" />
         <activity android:name=".UserLogin.NewRegisterActivity" />
