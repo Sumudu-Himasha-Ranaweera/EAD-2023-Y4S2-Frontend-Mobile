@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Reservation.ReservationHistoryActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_weight="1"
+        android:text="BOOKINGS"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--    -->
+
+<!--    <TextView-->
+<!--        android:id="@+id/label"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginBottom="84dp"-->
+<!--        android:layout_marginLeft="25dp"-->
+<!--        android:layout_marginRight="25dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:padding="5dp"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:text="මේ මොහොතේ සිට ඇති දුම්රියන් වෙත යන්න"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:background="#002D62"-->
+<!--        android:textSize="12dp"-->
+<!--        android:textStyle="normal"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/main_list"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <TextView
+        android:id="@+id/text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1"
+        android:text="Manage all your train ticket reservations"
+        android:textSize="12dp"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/ViewFromLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="15dp"
+        android:layout_weight="1"
+        android:text="ඔබගේ සියලුම දුම්රිය ප්‍රවේශපත්‍ර වෙන්කිරීම් මෙහිදී ලබාගන්න"
+        android:textSize="12dp"
+        android:padding="5dp"
+        android:textColor="@color/white"
+        android:background="#002D62"
+        android:textStyle="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-1dp"
+        android:tint="@color/black"
+        app:layout_constraintBottom_toBottomOf="@+id/ViewFromLocation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/ViewFromLocation"
+        app:srcCompat="@drawable/play_arrow" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/history_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="150dp"
+        app:layout_constraintTop_toBottomOf="@+id/textView"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
