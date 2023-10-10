@@ -224,7 +224,7 @@
                                         app:layout_constraintEnd_toEndOf="parent"
                                         app:layout_constraintStart_toStartOf="parent"
                                         app:layout_constraintTop_toTopOf="parent"
-                                        app:srcCompat="@drawable/notification" />
+                                        app:srcCompat="@drawable/forbidden" />
                                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                                 <TextView
@@ -233,7 +233,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="-5dp"
                                     android:layout_marginBottom="5dp"
-                                    android:text="Notification"
+                                    android:text="Deactivate"
                                     android:textAlignment="center"
                                     android:textColor="#000000"
                                     android:textSize="13sp"
