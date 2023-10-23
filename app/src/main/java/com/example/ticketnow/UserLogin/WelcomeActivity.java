@@ -29,7 +29,7 @@ public class WelcomeActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent LoginPage = new Intent(WelcomeActivity.this, NewLoginActivity.class);
+                Intent LoginPage = new Intent(WelcomeActivity.this, LoginActivity.class);
                 startActivity(LoginPage);
             }
         });
