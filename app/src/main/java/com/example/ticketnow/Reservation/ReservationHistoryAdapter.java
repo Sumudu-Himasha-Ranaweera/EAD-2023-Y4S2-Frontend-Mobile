@@ -4,10 +4,12 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.ticketnow.Model.BookingsModel;
 import com.example.ticketnow.Model.ReserveHistoryModel;
 import com.example.ticketnow.Model.ScheduleModel;
 import com.example.ticketnow.R;
@@ -18,9 +20,9 @@ import java.util.List;
 public class ReservationHistoryAdapter extends RecyclerView.Adapter<ReservationHistoryAdapter.ReserveViewHolder> {
 
     private Context context;
-    private List<ReserveHistoryModel> list;
+    private List<BookingsModel> list;
 
-    public ReservationHistoryAdapter(Context context, List<ReserveHistoryModel> list) {
+    public ReservationHistoryAdapter(Context context, List<BookingsModel> list) {
         this.context = context;
         this.list = list;
     }
@@ -34,27 +36,46 @@ public class ReservationHistoryAdapter extends RecyclerView.Adapter<ReservationH
 
     @Override
     public void onBindViewHolder(ReservationHistoryAdapter.ReserveViewHolder holder, int position) {
-        ReserveHistoryModel reserve = list.get(position);
+        BookingsModel booking = list.get(position);
 
-        holder.displayNameTextView.setText("Display Name : " + reserve.getDisplayName());
-        holder.createDateTextView.setText("Created At : " + reserve.getCreatedAt());
-        holder.reserveCountTextView.setText("No of Reservations : " + reserve.getReservedCount());
-        holder.reserveDateTextView.setText("Reservation Date : " + reserve.getReservationDate());
-        holder.statusTextView.setText("Reservation Status : " + reserve.getReservationStatus());
-        holder.amountTextView.setText("Full Tickets Price : " + reserve.getAmount());
+
+        holder.textViewSTATUS.setText(booking.getReservationStatus());
+        holder.textViewSTART.setText(booking.getFromLocation());
+        holder.textViewEND.setText(booking.getToLocation());
+        holder.textViewTrainName.setText(booking.getTrainName());
+        holder.textViewTrainNumber.setText(booking.getTrainNumber());
+
+        holder.displayNameTextView.setText("Display Name : " + booking.getDisplayName());
+        holder.createDateTextView.setText("Created At : " + booking.getCreatedAt());
+        holder.reserveCountTextView.setText("No of Reservations : " + booking.getReservedCount());
+        holder.reserveDateTextView.setText("Reservation Date : " + booking.getReservationDate());
+        holder.statusTextView.setText("Reservation Status : " + booking.getReservationStatus());
+        holder.amountTextView.setText("Full Tickets Price : " + booking.getAmount());
+
     }
 
     @Override
     public int getItemCount() {
+
         return list.size();
     }
 
     public class ReserveViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView displayNameTextView, createDateTextView, reserveCountTextView, reserveDateTextView, statusTextView, amountTextView;
+        TextView textViewSTATUS, textViewSTART, textViewEND,
+                textViewTrainName, textViewTrainNumber,
+                displayNameTextView, createDateTextView, reserveCountTextView, reserveDateTextView,
+                statusTextView, amountTextView;
+        ImageButton updateButton, deleteButton;
 
         public ReserveViewHolder(View view) {
             super(view);
+
+            textViewSTATUS = itemView.findViewById(R.id.textViewSTATUS);
+            textViewSTART = itemView.findViewById(R.id.textViewSTART);
+            textViewEND = itemView.findViewById(R.id.textViewEND);
+            textViewTrainName = itemView.findViewById(R.id.textViewTrainName);
+            textViewTrainNumber = itemView.findViewById(R.id.textViewTrainNumber);
 
             displayNameTextView = view.findViewById(R.id.displayNameTextView);
             createDateTextView = view.findViewById(R.id.createDateTextView);

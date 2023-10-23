@@ -1,25 +1,21 @@
 package com.example.ticketnow.Reservation;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
-import android.graphics.drawable.Drawable;
+import android.database.Cursor;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.ticketnow.Model.ReserveHistoryModel;
-import com.example.ticketnow.Model.ScheduleModel;
+import com.example.ticketnow.Model.BookingsModel;
 import com.example.ticketnow.R;
+import com.example.ticketnow.Sqlite.DatabaseHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,104 +24,151 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ReservationHistoryActivity extends AppCompatActivity {
 
-    // Replace "YOUR_USER_ID" with the actual userId you want to use
-    String userId = "string"; // Replace with the actual user ID
-
-    // Replace "YOUR_BASE_URL" with the actual base URL of your API
-    private String url = "https://restapi.azurewebsites.net/api/Reservation/getReservationsByUserId/" + userId;
-
-    private RecyclerView mList;
-
-    private LinearLayoutManager linearLayoutManager;
-    private DividerItemDecoration dividerItemDecoration;
-    private List<ReserveHistoryModel> reserveList;
-    private RecyclerView.Adapter adapter;
+    private ReservationHistoryAdapter reservationHistoryAdapter;
+    private List<BookingsModel> bookingsList;
+    private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reservation_history);
 
-        mList = findViewById(R.id.history_list);
+        databaseHelper = new DatabaseHelper(this);
+        String userId = getUserIdFromDatabase(); // Get the userId from the SQLite Database
 
-        reserveList = new ArrayList<>();
-        adapter = new ReservationHistoryAdapter(getApplicationContext(),reserveList);
+        bookingsList = new ArrayList<>();
+        reservationHistoryAdapter = new ReservationHistoryAdapter(this, bookingsList);
 
-        linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        dividerItemDecoration = new DividerItemDecoration(mList.getContext(), linearLayoutManager.getOrientation());
+        // Initialize the RecyclerView and set the adapter
+        RecyclerView recyclerView = findViewById(R.id.history_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(reservationHistoryAdapter);
 
-        mList.setHasFixedSize(true);
-        mList.setLayoutManager(linearLayoutManager);
-        mList.addItemDecoration(dividerItemDecoration);
-        mList.setAdapter(adapter);
+        // Make an HTTP request to fetch reservations
+        fetchReservations(userId);
 
-        //Execute the method in onCreate()
-        getData(userId);
     }
 
-    private void getData(String userId) {
-
-        final ProgressDialog progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Loading...");
-        progressDialog.show();
-
+    // Method to fetch reservations via HTTP request
+    private void fetchReservations(String userId) {
+        String url = "https://restapi.azurewebsites.net/api/Reservation/getSchedulesByUserId/" + userId;
         RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(
-                Request.Method.GET,
-                url,
-                null,
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
-                        // Parse the JSON response and update the reserveList
                         parseResponse(response);
-                        progressDialog.dismiss();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // Handle errors
-                        Log.e("API Request", "Error: " + error.getMessage());
                         Toast.makeText(ReservationHistoryActivity.this, "Error fetching data", Toast.LENGTH_SHORT).show();
                     }
-                }
-        );
+                });
 
         requestQueue.add(jsonArrayRequest);
     }
 
+    // Method to parse the JSON response and update the adapter
     private void parseResponse(JSONArray response) {
-        // Parse the JSON response and update the reserveList
-        reserveList.clear(); // Clear the previous data
-
         try {
-            for (int i = 0; i < response.length(); i++) {
-                JSONObject jsonObject = response.getJSONObject(i);
-                // Extract data and create ReserveHistoryModel objects
-                String displayName = jsonObject.getString("displayName");
-                String createdAt = jsonObject.getString("createdAt");
-                int reservedCount = jsonObject.getInt("reservedCount");
-                String reservationDate = jsonObject.getString("reservationDate");
-                String reservationStatus = jsonObject.getString("reservationStatus");
-                int amount = jsonObject.getInt("amount");
+            String userId = getUserIdFromDatabase(); // Get the userId from the SQLite Database
 
-                // Create a ReserveHistoryModel object and add to the list
-                ReserveHistoryModel reserveHistoryModel =
-                        new ReserveHistoryModel(displayName, createdAt, reservedCount, reservationDate, reservationStatus, amount);
-                reserveList.add(reserveHistoryModel);
+            for (int i = 0; i < response.length(); i++) {
+                JSONObject scheduleObject = response.getJSONObject(i);
+
+                // Check if the "reservations" array exists in the scheduleObject
+                if (scheduleObject.has("reservations")) {
+                    JSONArray reservationsArray = scheduleObject.getJSONArray("reservations");
+
+                    // Check if the "userId" in the reservations array matches the SQLite userId
+                    boolean isMatchingUser = false;
+                    for (int j = 0; j < reservationsArray.length(); j++) {
+                        JSONObject reservationObject = reservationsArray.getJSONObject(j);
+                        String reservationUserId = reservationObject.optString("userId", "");
+
+                        if (reservationUserId.equals(userId)) {
+                            isMatchingUser = true;
+                            // Extract reservation details
+                            String fromLocation = scheduleObject.getString("fromLocation");
+                            String toLocation = scheduleObject.getString("toLocation");
+                            // Extract train information
+                            JSONObject trainObject = scheduleObject.getJSONObject("train");
+                            String trainName = trainObject.getString("trainName");
+                            String trainNumber = trainObject.getString("trainNumber");
+
+                            // Extract reservation details
+                            String displayName = reservationObject.getString("displayName");
+                            String createdAt = reservationObject.getString("createdAt");
+                            int reservedCount = reservationObject.getInt("reservedCount");
+                            String reservationDate = reservationObject.getString("reservationDate");
+                            String reservationStatus = reservationObject.getString("reservationStatus");
+                            int amount = reservationObject.getInt("amount");
+
+                            // Create a BookingsModel for the reservation and add it to the list
+                            BookingsModel booking = new BookingsModel(
+                                    fromLocation,
+                                    toLocation,
+                                    trainName,
+                                    trainNumber,
+                                    displayName,
+                                    createdAt,
+                                    reservedCount,
+                                    reservationDate,
+                                    reservationStatus,
+                                    amount
+                            );
+
+                            bookingsList.add(booking);
+                        }
+                    }
+
+                    if (!isMatchingUser) {
+                        // Display an error message
+                        Toast.makeText(this, "No reservations found for the current user.", Toast.LENGTH_SHORT).show();
+                    }
+                }
             }
 
-            // Notify the adapter that the data has changed
-            adapter.notifyDataSetChanged();
-
+            reservationHistoryAdapter.notifyDataSetChanged();
         } catch (JSONException e) {
             e.printStackTrace();
-//            Toast.makeText(this, "Error parsing JSON", Toast.LENGTH_SHORT).show();
         }
     }
+
+    // Method to get the userId from the SQLite Database
+    private String getUserIdFromDatabase() {
+        Cursor cursor = databaseHelper.getReadableDatabase().query(
+                DatabaseHelper.TABLE_NAME,
+                new String[] {DatabaseHelper.COLUMN_USER_DETAILS},
+                null, // No specific WHERE clause, so it retrieves all records.
+                null, // No specific selection arguments.
+                null, // No specific group by clause.
+                null, // No specific having clause.
+                null  // No specific order by clause.
+        );
+
+        if (cursor.moveToFirst()) {
+            String userDetailsJson = cursor.getString(0);
+
+            try {
+                JSONObject userDetails = new JSONObject(userDetailsJson);
+                String userId = userDetails.optString("id", "");
+                return userId;
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        cursor.close();
+
+        // Return a default value if no user details were found
+        return "No UserID";
+    }
+
 }

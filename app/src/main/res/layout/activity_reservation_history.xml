@@ -23,27 +23,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    -->
-
-<!--    <TextView-->
-<!--        android:id="@+id/label"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginBottom="84dp"-->
-<!--        android:layout_marginLeft="25dp"-->
-<!--        android:layout_marginRight="25dp"-->
-<!--        android:layout_weight="1"-->
-<!--        android:padding="5dp"-->
-<!--        android:gravity="center_vertical"-->
-<!--        android:text="මේ මොහොතේ සිට ඇති දුම්රියන් වෙත යන්න"-->
-<!--        android:textColor="@color/white"-->
-<!--        android:background="#002D62"-->
-<!--        android:textSize="12dp"-->
-<!--        android:textStyle="normal"-->
-<!--        app:layout_constraintBottom_toTopOf="@+id/main_list"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintStart_toStartOf="parent" />-->
-
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"

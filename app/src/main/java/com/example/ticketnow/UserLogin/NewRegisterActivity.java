@@ -52,7 +52,7 @@ public class NewRegisterActivity extends AppCompatActivity {
         txt_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent LoginPage = new Intent(NewRegisterActivity.this, NewLoginActivity.class);
+                Intent LoginPage = new Intent(NewRegisterActivity.this, LoginActivity.class);
                 startActivity(LoginPage);
             }
         });
@@ -126,7 +126,7 @@ public class NewRegisterActivity extends AppCompatActivity {
                         // For simplicity, we'll just show a Toast
                         StyleableToast.makeText(NewRegisterActivity.this, "User registered successfully", R.style.SuccessToast).show();
 
-                        Intent SignUp =new Intent(NewRegisterActivity.this, NewLoginActivity.class);
+                        Intent SignUp =new Intent(NewRegisterActivity.this, LoginActivity.class);
                         startActivity(SignUp);
                     }
                 }, new Response.ErrorListener() {
@@ -141,13 +141,6 @@ public class NewRegisterActivity extends AppCompatActivity {
         // Add the request to the RequestQueue
         MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
-
-
-
-
-
-
-
 
 
     //remove bottom status bar
