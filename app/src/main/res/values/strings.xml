@@ -22,20 +22,20 @@
 
     <string-array name="start_station">
         <item>Default</item>
-        <item>Maradana මරදාන</item>
-        <item>Ambepussa අඹේපුස්ස</item>
-        <item>Kelaniya කැළණිය</item>
-        <item>Dematagoda දෙමටගොඩ</item>
-        <item>Ragama රාගම</item>
+        <item>Kandy</item>
+        <item>Colombo</item>
+        <item>Ambepussa</item>
+        <item>Colombo Fort</item>
+        <item>Ragama</item>
     </string-array>
 
     <string-array name="end_station">
         <item>Default</item>
-        <item>Maradana මරදාන</item>
-        <item>Ambepussa අඹේපුස්ස</item>
-        <item>Kelaniya කැළණිය</item>
-        <item>Dematagoda දෙමටගොඩ</item>
-        <item>Ragama රාගම</item>
+        <item>Kandy</item>
+        <item>Colombo</item>
+        <item>Ambepussa</item>
+        <item>Colombo Fort</item>
+        <item>Ragama</item>
     </string-array>
 
 </resources>

@@ -38,7 +38,7 @@ public class WelcomeActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(WelcomeActivity.this, NewRegisterActivity.class);
+                Intent i = new Intent(WelcomeActivity.this, RegisterActivity.class);
                 startActivity(i);
             }
         });

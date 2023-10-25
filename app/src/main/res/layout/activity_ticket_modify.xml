@@ -105,7 +105,7 @@
                 android:textSize="18dp"
                 android:textStyle="bold"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/ViewDisplayName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -117,58 +117,23 @@
                 android:textSize="18sp"
                 android:inputType="none"/>
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="#D9D9D9" />
-
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
-
-            <!--            NIC -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="National Identity Card (NIC)"
-                android:alpha="0.7"
-                android:textSize="18dp"
-                android:textStyle="bold"/>
-
-            <TextView
-                android:id="@+id/ViewNIC"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_weight="1"
-                android:textAlignment="viewEnd"
-                android:textColor="	#00008B"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:inputType="none"/>
-
-            <View
-                android:id="@+id/view6"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="5dp"
-                android:background="#D9D9D9" />
+<!--            <View-->
+<!--                android:id="@+id/view3"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1dp"-->
+<!--                android:layout_marginTop="5dp"-->
+<!--                android:layout_marginBottom="5dp"-->
+<!--                android:background="#D9D9D9" />-->
 
 
             <!--            Ticket Count -->
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No of Tickets"
+                android:text="Reserved Tickets"
                 android:textSize="18dp"
+                android:layout_marginTop="10dp"
                 android:alpha="0.7"
                 android:textStyle="bold"/>
 
@@ -180,15 +145,14 @@
                 android:layout_gravity="center" />
 
             <!--        Amount -->
-            <View
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"/>
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Total Ticket Price"
                 android:textSize="18dp"
+                android:layout_marginTop="10dp"
                 android:alpha="0.3"
                 android:textColor="#ff0000"
                 android:textStyle="bold"/>
@@ -204,13 +168,63 @@
                 android:textSize="18sp"
                 android:inputType="none"/>
 
+            <!--            NIC -->
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reservation Date"
+                android:layout_marginTop="10dp"
+                android:alpha="0.7"
+                android:textSize="18dp"
+                android:textStyle="bold"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/ViewReservationDate"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="	#00008B"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:inputType="none"/>
+
+            <ImageButton
+                android:id="@+id/selectDate"
+                android:elevation="10dp"
+                android:background="@drawable/update_button_round"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:tint="@color/black"
+                android:layout_margin="2dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_date_black"
+                android:contentDescription="Update" />
+
+        </LinearLayout>
+
+            <View
+                android:id="@+id/view6"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="#D9D9D9" />
+
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="10dp"/>
 
             <Button
-                android:id="@+id/reserveButton"
+                android:id="@+id/updateButton"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:background="@drawable/background_modify_button"

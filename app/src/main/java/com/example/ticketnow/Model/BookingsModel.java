@@ -2,10 +2,15 @@ package com.example.ticketnow.Model;
 
 public class BookingsModel {
 
+    public String ScheduleId;
     public String fromLocation;
     public String toLocation;
+    public int ticketPrice;
+
     public String trainName;
     public String trainNumber;
+
+    public String ReservationId;
     public String displayName;
     public String createdAt;
     public int reservedCount;
@@ -13,19 +18,31 @@ public class BookingsModel {
     public String reservationStatus;
     public int amount;
 
-    public BookingsModel(String fromLocation, String toLocation, String trainName,
-                         String trainNumber, String displayName, String createdAt,
+    public BookingsModel(String ScheduleId, String fromLocation, String toLocation,int ticketPrice, String trainName,
+                         String trainNumber, String ReservationId, String displayName, String createdAt,
                          int reservedCount, String reservationDate, String reservationStatus, int amount) {
+
+        this.ScheduleId = ScheduleId;
         this.fromLocation = fromLocation;
         this.toLocation = toLocation;
+        this.ticketPrice = ticketPrice;
         this.trainName = trainName;
         this.trainNumber = trainNumber;
+        this.ReservationId = ReservationId;
         this.displayName = displayName;
         this.createdAt = createdAt;
         this.reservedCount = reservedCount;
         this.reservationDate = reservationDate;
         this.reservationStatus = reservationStatus;
         this.amount = amount;
+    }
+
+    public String getScheduleId() {
+        return ScheduleId;
+    }
+
+    public void setScheduleId(String scheduleId) {
+        ScheduleId = scheduleId;
     }
 
     public String getFromLocation() {
@@ -44,6 +61,14 @@ public class BookingsModel {
         this.toLocation = toLocation;
     }
 
+    public int getTicketPrice() {
+        return ticketPrice;
+    }
+
+    public void setTicketPrice(int ticketPrice) {
+        this.ticketPrice = ticketPrice;
+    }
+
     public String getTrainName() {
         return trainName;
     }
@@ -58,6 +83,14 @@ public class BookingsModel {
 
     public void setTrainNumber(String trainNumber) {
         this.trainNumber = trainNumber;
+    }
+
+    public String getReservationId() {
+        return ReservationId;
+    }
+
+    public void setReservationId(String reservationId) {
+        ReservationId = reservationId;
     }
 
     public String getDisplayName() {

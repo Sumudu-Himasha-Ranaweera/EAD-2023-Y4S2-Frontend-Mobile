@@ -142,4 +142,5 @@ public class ScheduleModel implements Parcelable {
         dest.writeInt(totalSeats);
     }
 
+
 }

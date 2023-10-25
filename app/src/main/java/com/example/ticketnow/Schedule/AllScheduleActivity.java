@@ -8,13 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -45,6 +44,10 @@ public class AllScheduleActivity extends AppCompatActivity {
     private List<ScheduleModel> scheduleList;
     private RecyclerView.Adapter adapter;
 
+    private String startStation;
+    private String endStation;
+
+    private TextView viewFromLocation, viewToLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,17 @@ public class AllScheduleActivity extends AppCompatActivity {
         setContentView(R.layout.activity_all_schedule);
 
         mList = findViewById(R.id.main_list);
+        viewFromLocation = findViewById(R.id.ViewFromLocation);
+        viewToLocation = findViewById(R.id.ViewToLocation);
+
+        // Retrieve the selected stations from the intent
+        Intent intent = getIntent();
+        startStation = intent.getStringExtra("startStation");
+        endStation = intent.getStringExtra("endStation");
+
+        // Set the selected stations to the TextViews
+        viewFromLocation.setText(startStation);
+        viewToLocation.setText(endStation);
 
         // Add a click listener for the RecyclerView items.
         mList.addOnItemTouchListener(new RecyclerView.SimpleOnItemTouchListener() {
@@ -63,15 +77,12 @@ public class AllScheduleActivity extends AppCompatActivity {
                     ScheduleModel selectedSchedule = scheduleList.get(position);
 
                     // Print the response body of the selected card to the console.
-                    Log.d("Response Body", selectedSchedule.toString());
+                    Log.d("Response Body >>>>>>> ", selectedSchedule.toString());
 
                     // Convert the selectedSchedule object to a JSON string
                     String selectedScheduleJson = scheduleModelToJSON(selectedSchedule);
 
                     // Start the TicketReservationActivity and pass necessary data.
-//                    Intent intent = new Intent(AllScheduleActivity.this, TicketReserveActivity.class);
-//                    intent.putExtra("selectedSchedule", selectedSchedule);
-//                    startActivity(intent);
                     Intent intent = new Intent(AllScheduleActivity.this, TicketReserveActivity.class);
                     intent.putExtra("selectedSchedule", selectedScheduleJson);
                     startActivity(intent);
@@ -91,7 +102,7 @@ public class AllScheduleActivity extends AppCompatActivity {
         });
 
         scheduleList = new ArrayList<>();
-        adapter = new ScheduleAdapter(getApplicationContext(),scheduleList);
+        adapter = new ScheduleAdapter(this, scheduleList);
 
         linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -102,9 +113,8 @@ public class AllScheduleActivity extends AppCompatActivity {
         mList.addItemDecoration(dividerItemDecoration);
         mList.setAdapter(adapter);
 
-        //Execute the method in onCreate()
+        // Execute the method in onCreate()
         getData();
-
     }
 
     private void getData() {
@@ -112,53 +122,47 @@ public class AllScheduleActivity extends AppCompatActivity {
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(url, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                for (int i = 0; i < response.length(); i++) {
-                    try {
+        // Initialize a Volley request queue.
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
 
-                        JSONObject jsonObject = response.getJSONObject(i);
-                        ScheduleModel schedule = parseSchedule(jsonObject);
-                        scheduleList.add(schedule);
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject jsonObject = response.getJSONObject(i);
+                                ScheduleModel schedule = parseSchedule(jsonObject);
 
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                                // Check if either of the stations matches the selected start or end station.
+                                if (schedule.getFromLocation().equals(startStation) ||
+                                        schedule.getToLocation().equals(endStation)) {
+                                    scheduleList.add(schedule);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
                         progressDialog.dismiss();
                     }
-                }
-                adapter.notifyDataSetChanged();
-                progressDialog.dismiss();
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("Volley", error.toString());
-                progressDialog.dismiss();
-            }
-        });
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("Volley", error.toString());
+                        progressDialog.dismiss();
+                    }
+                });
+
+        // Add the request to the queue.
         requestQueue.add(jsonArrayRequest);
     }
 
-//    private ScheduleModel parseSchedule(JSONObject jsonObject) throws JSONException {
-//        JSONObject trainObject = jsonObject.getJSONObject("train");
-
-//        String JSONTrainName = trainObject.getString("trainName");
-//        String JSONTrainNumber = trainObject.getString("trainNumber");
-//        String JSONStatus = trainObject.getString("status");
-//        int JSONTicketPrice = jsonObject.getInt("ticketPrice");
-//
-//        return new ScheduleModel(JSONTrainName, JSONTrainNumber, JSONStatus, JSONTicketPrice);
-
-//    }
-
-
     private ScheduleModel parseSchedule(JSONObject jsonObject) {
-
         String JSONID = jsonObject.optString("id", "");
-        String JSONFromLocation = jsonObject.optString("fromLocation", "");
-        String JSONToLocation = jsonObject.optString("toLocation", "");
+        String fromLocation = jsonObject.optString("fromLocation", "");
+        String toLocation = jsonObject.optString("toLocation", "");
         int JSONTicketPrice = jsonObject.optInt("ticketPrice", 0);
 
         JSONObject trainObject = jsonObject.optJSONObject("train");
@@ -169,14 +173,12 @@ public class AllScheduleActivity extends AppCompatActivity {
             String JSONStatus = trainObject.optString("status", "");
             int JSONTotalSeats = trainObject.optInt("totalSeats", 0);
 
-
-            return new ScheduleModel(JSONID, JSONFromLocation, JSONToLocation, JSONTicketPrice, JSONTrainName, JSONTrainNumber, JSONStatus, JSONTotalSeats);
+            return new ScheduleModel(JSONID, fromLocation, toLocation, JSONTicketPrice, JSONTrainName, JSONTrainNumber, JSONStatus, JSONTotalSeats);
         } else {
-            // return a new ScheduleModel with default values.
-            return new ScheduleModel(JSONID, JSONFromLocation, JSONToLocation, JSONTicketPrice, "", "", "", 0);
+            // Return a new ScheduleModel with default values.
+            return new ScheduleModel(JSONID, fromLocation, toLocation, JSONTicketPrice, "", "", "", 0);
         }
     }
-
 
     private String scheduleModelToJSON(ScheduleModel schedule) {
         try {
@@ -195,6 +197,4 @@ public class AllScheduleActivity extends AppCompatActivity {
             return "{}"; // Return an empty JSON object as a fallback
         }
     }
-
-
 }

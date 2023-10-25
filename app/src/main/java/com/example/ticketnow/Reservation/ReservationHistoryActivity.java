@@ -95,14 +95,18 @@ public class ReservationHistoryActivity extends AppCompatActivity {
                         if (reservationUserId.equals(userId)) {
                             isMatchingUser = true;
                             // Extract reservation details
+                            String scheduleId = scheduleObject.getString("id");
                             String fromLocation = scheduleObject.getString("fromLocation");
                             String toLocation = scheduleObject.getString("toLocation");
+                            int ticketPrice = scheduleObject.getInt("ticketPrice");
+
                             // Extract train information
                             JSONObject trainObject = scheduleObject.getJSONObject("train");
                             String trainName = trainObject.getString("trainName");
                             String trainNumber = trainObject.getString("trainNumber");
 
                             // Extract reservation details
+                            String reservationId = reservationObject.getString("id");
                             String displayName = reservationObject.getString("displayName");
                             String createdAt = reservationObject.getString("createdAt");
                             int reservedCount = reservationObject.getInt("reservedCount");
@@ -112,10 +116,13 @@ public class ReservationHistoryActivity extends AppCompatActivity {
 
                             // Create a BookingsModel for the reservation and add it to the list
                             BookingsModel booking = new BookingsModel(
+                                    scheduleId,
                                     fromLocation,
                                     toLocation,
+                                    ticketPrice,
                                     trainName,
                                     trainNumber,
+                                    reservationId,
                                     displayName,
                                     createdAt,
                                     reservedCount,

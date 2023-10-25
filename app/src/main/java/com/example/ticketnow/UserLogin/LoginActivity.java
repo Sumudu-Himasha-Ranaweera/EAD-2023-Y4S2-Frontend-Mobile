@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,9 @@ import com.example.ticketnow.R;
 import com.example.ticketnow.Sqlite.DatabaseHelper;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.UnsupportedEncodingException;
+
 import io.github.muddz.styleabletoast.StyleableToast;
 
 public class LoginActivity extends AppCompatActivity {
@@ -70,19 +74,19 @@ public class LoginActivity extends AppCompatActivity {
                 String userInputPassword = password.getText().toString().trim();
 
                 //Validations
-//                if (!isNICValid(userInputNIC)) {
-//                    // Display a toast message for invalid NIC
-//                    StyleableToast.makeText(LoginActivity.this, "Invalid NIC", R.style.InvalidToast).show();
-//                } else if (!isValidPassword(userInputPassword)) {
-//                    // Display a toast message for empty password
-//                    StyleableToast.makeText(LoginActivity.this, "Password should be at least 6 characters", R.style.InvalidToast).show();
-//                } else {
-//                    // Call the method to perform sign-in
-//                    signIn(userInputNIC, userInputPassword);
-//                }
+                if (!isNICValid(userInputNIC)) {
+                    // Display a toast message for invalid NIC
+                    StyleableToast.makeText(LoginActivity.this, "Invalid NIC", R.style.InvalidToast).show();
+                } else if (!isValidPassword(userInputPassword)) {
+                    // Display a toast message for empty password
+                    StyleableToast.makeText(LoginActivity.this, "Password should be at least 6 characters", R.style.InvalidToast).show();
+                } else {
+                    // Call the method to perform sign-in
+                    signIn(userInputNIC, userInputPassword);
+                }
 
-//                // Call the method to perform sign-in
-                signIn(userInputNIC, userInputPassword);
+                // Call the method to perform sign-in
+//                signIn(userInputNIC, userInputPassword);
 
             }
         });
@@ -143,8 +147,32 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // Display an error message in case of an error
-                        System.err.println("Error123: " + error.networkResponse);
-                        StyleableToast.makeText(LoginActivity.this, "Sign-in Failed !", R.style.InvalidToast).show();
+//                        System.err.println("Error >> " + error.networkResponse);
+//                        StyleableToast.makeText(LoginActivity.this, "Sign-in Failed !", R.style.InvalidToast).show();
+
+                        // Display an error message in case of an error
+                        String errorMessage = "Unknown Error"; // Default message
+                        if (error.networkResponse != null && error.networkResponse.data != null) {
+                            try {
+                                String errorResponse = new String(error.networkResponse.data, "UTF-8");
+                                JSONObject errorJSON = new JSONObject(errorResponse);
+                                if (errorJSON.has("message")) {
+                                    errorMessage = errorJSON.getString("message");
+                                }
+                            } catch (UnsupportedEncodingException | JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                        // Now, errorMessage contains the "message" from the error response JSON
+                        System.err.println("Error Message: " + errorMessage);
+
+                        if(errorMessage.equals("User Is In-Active")){
+                            System.err.println("start api call");
+                            userRequest(nic);
+                        }
+                        // You can display this error message to the user if needed
+                        StyleableToast.makeText(LoginActivity.this, "Sign-in Failed: " + errorMessage, R.style.InvalidToast).show();
                     }
                 });
 
@@ -152,16 +180,16 @@ public class LoginActivity extends AppCompatActivity {
         Volley.newRequestQueue(this).add(request);
     }
 
-//    private boolean isNICValid(String nicNumber) {
-//        if (nicNumber.length() == 10) {
-//            if (nicNumber.substring(0, 9).matches("\\d+") && ("x".equals(nicNumber.substring(9, 10).toLowerCase()) || "v".equals(nicNumber.substring(9, 10).toLowerCase()))) {
-//                return true; // New NIC format
-//            }
-//        } else if (nicNumber.length() == 12 && nicNumber.matches("\\d+")) {
-//            return true; // Old NIC format
-//        }
-//        return false; // NIC is invalid
-//    }
+    private boolean isNICValid(String nicNumber) {
+        if (nicNumber.length() == 10) {
+            if (nicNumber.substring(0, 9).matches("\\d+") && ("x".equals(nicNumber.substring(9, 10).toLowerCase()) || "v".equals(nicNumber.substring(9, 10).toLowerCase()))) {
+                return true; // New NIC format
+            }
+        } else if (nicNumber.length() == 12 && nicNumber.matches("\\d+")) {
+            return true; // Old NIC format
+        }
+        return false; // NIC is invalid
+    }
 
     private boolean isValidPassword(String password) {
         // You can define your password validation logic here
@@ -179,5 +207,44 @@ public class LoginActivity extends AppCompatActivity {
         // Insert the data into the database
         long newRowId = db.insert(DatabaseHelper.TABLE_NAME, null, values);
         db.close();
+    }
+
+    // Function to send a user request
+    private void userRequest(String nic) {
+
+        // Create a JSON object for the request body
+        JSONObject requestBody = new JSONObject();
+        try {
+            requestBody.put("nic", nic);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        // Define the POST request URL
+        String url = "https://restapi.azurewebsites.net/api/UserRequest";
+
+        // Make a POST request using Volley
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, requestBody,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // Handle the response
+                        // You can process the response JSON if needed
+                        Log.d("RegisterActivity", "User request created successfully." + response.toString());
+
+                        // For simplicity, we'll just show a Toast
+                        StyleableToast.makeText(LoginActivity.this, "User request created successfully.", R.style.SuccessToast).show();
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // Handle errors
+                Log.e("RegisterActivity", "User request create un-successful. " + error.toString());
+                StyleableToast.makeText(LoginActivity.this, "User request create un-successful. " + error.getMessage(), R.style.InvalidToast).show();
+            }
+        });
+
+        // Add the request to the RequestQueue
+        MySingleton.getInstance(this).addToRequestQueue(jsonObjectRequest);
     }
 }

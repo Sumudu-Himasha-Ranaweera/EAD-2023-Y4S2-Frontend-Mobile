@@ -28,26 +28,24 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".UserLogin.WelcomeActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Design.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            >
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
         </activity>
         <activity android:name=".UserLogin.RegisterActivity" /> <!-- <activity android:name=".UserLogin.LoginActivity" /> -->
         <activity android:name=".UserLogin.OTPActivity" />
-        <activity android:name=".SplashActivity">
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Design.NoActionBar">
 
-            <!-- android:exported="true" -->
-            <!-- android:theme="@style/Theme.Design.NoActionBar"> -->
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
+             <intent-filter>
+             <action android:name="android.intent.action.MAIN" />
+             <category android:name="android.intent.category.LAUNCHER" />
+             </intent-filter>
         </activity>
     </application>
 

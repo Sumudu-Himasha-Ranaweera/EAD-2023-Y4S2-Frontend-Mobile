@@ -124,50 +124,51 @@
     <!--on below line we are creating
         edit text for passing data-->
 
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:text="SELECT DATE"
-        android:textColor="@color/black"
-        android:textSize="15dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dropdown_end_station" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView15"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="48dp"-->
+<!--        android:text="SELECT DATE"-->
+<!--        android:textColor="@color/black"-->
+<!--        android:textSize="15dp"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.074"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/dropdown_end_station" />-->
 
-    <EditText
-        android:id="@+id/idEdtDate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="35dp"
-        android:clickable="false"
-        android:cursorVisible="false"
-        android:focusable="false"
-        android:focusableInTouchMode="false"
-        android:hint="Enter date"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.48"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15" />
+<!--    <EditText-->
+<!--        android:id="@+id/idEdtDate"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_centerInParent="true"-->
+<!--        android:layout_marginTop="8dp"-->
+<!--        android:layout_marginLeft="25dp"-->
+<!--        android:layout_marginRight="35dp"-->
+<!--        android:clickable="false"-->
+<!--        android:cursorVisible="false"-->
+<!--        android:focusable="false"-->
+<!--        android:focusableInTouchMode="false"-->
+<!--        android:hint="Enter date"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.48"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView15" />-->
 
     <Button
         android:id="@+id/buttonSearch"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginBottom="156dp"
         android:background="@drawable/background_button"
         android:text="Search"
         android:textColor="@color/white"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.875"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
